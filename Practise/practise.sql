@@ -32,3 +32,63 @@ SELECT * from employees
 SELECT a.emp_no, concat(a.first_name, a.last_name) as "Name", b.salary From employees as a, salaries as b where a.emp_no = b.emp_no
 
 select a.emp_no, concat(a.first_name, a.last_name) as "Name", b.salary From employees as a inner join salaries as b on a.emp_no = b.emp_no order by a.emp_no
+
+-------------------------------------------------
+-- INNER JION----
+select a.emp_no, concat(a.first_name, a.last_name) as "Name", b.salary, b.from_date, c.title
+ From employees as a inner join salaries as b on a.emp_no = b.emp_no 
+ inner Join titles as c on c.emp_no = a.emp_no and (b.from_date + interval '2 days') = c.from_date
+ Order by a.emp_no, b.from_date
+
+select a.emp_no, concat(a.first_name, a.last_name) as "Name", b.salary, b.from_date, c.title
+ From employees as a inner join salaries as b on a.emp_no = b.emp_no 
+ inner Join titles as c on c.emp_no = a.emp_no and ((b.from_date + interval '2 days') = c.from_date or b.from_date = c.from_date)
+ Order by a.emp_no, b.from_date
+
+ ---------------------------------------------
+ -- lEFT JION --
+ select a.emp_no,
+    concat(a.first_name, a.last_name) as "Name",
+    b.salary,
+    COALESCE(b.from_date:: text , '-') as "Title taken on",
+    COALESCE(c.title, 'No title change')
+ From employees as a 
+ INNER JOIN salaries as b on a.emp_no = b.emp_no 
+ LEFT JOIN titles as c on c.emp_no = a.emp_no and ((b.from_date + interval '2 days') = c.from_date or b.from_date = c.from_date)
+ Order by a.emp_no, b.from_date
+
+ 
+ ---- Practise on INNER JOIN -------
+/*
+* DB: Store
+* Table: orders
+* Question: Get all orders from customers who live in Ohio (OH), New York (NY) or Oregon (OR) state
+* ordered by orderid
+*/
+
+select a.customerid, a.state, b.orderid 
+from customers as a 
+inner join orders as b on a.customerid = b.customerid
+where a.state in ('OH','NY', 'OR')
+
+
+/*
+* DB: Store
+* Table: products
+* Question: Show me the inventory for each product
+*/
+SELECT a.prod_id, a.title, a.category, b.quan_in_stock, b.sales
+FROM products as a
+inner join inventory as b on a.prod_id = b.prod_id
+
+
+/*
+* DB: Employees
+* Table: employees
+* Question: Show me for each employee which department they work in
+*/ 
+SELECT e.emp_no, e.first_name, dp.dept_name
+FROM employees AS e
+INNER JOIN dept_emp AS de ON de.emp_no = e.emp_no
+INNER JOIN departments AS dp ON dp.dept_no = de.dept_no
+order by e.emp_no
