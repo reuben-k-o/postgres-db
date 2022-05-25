@@ -127,3 +127,81 @@ FROM employees as e
 JOIN dept_emp AS de USING(emp_no)
 WHERE de.dept_no = 'd005'
 GROUP BY e.emp_no, de.from_date, de.to_date
+
+-----------------------------------------------------
+-- HAVING-----
+
+SELECT d.dept_name, COUNT(e.emp_no) AS "# of Employees"
+FROM employees as e
+JOIN dept_emp USING (emp_no)
+JOIN departments AS d USING(dept_no)
+WHERE e.gender = 'F'
+GROUP BY d.dept_name
+HAVING count(e.emp_no) > 25000
+
+/*
+*  Show me all the employees, hired after 1991, that have had more than 2 titles
+*  Database: Employees
+*/
+SELECT e.emp_no, count(t.title)
+FROM employees AS e
+JOIN titles AS t USING (emp_no)
+WHERE EXTRACT (YEAR FROM hire_date) > 1991
+GROUP BY e.emp_no
+HAVING count(t.title) > 2
+ORDER By e.emp_no
+
+
+/*
+*  Show me all the employees that have had more than 15 salary changes that work in the department development
+*  Database: Employees
+*/
+SELECT e.emp_no, count(s.salary), d.dept_no
+FROM employees AS e
+JOIN salaries AS s USING (emp_no)
+JOIN dept_emp AS d USING (emp_no)
+GROUP BY e.emp_no, d.dept_no
+HAVING count(s.salary) > 15
+ORDER By e.emp_no
+-----
+SELECT e.emp_no, count(s.from_date) as "amount of raises"
+FROM employees as e
+JOIN salaries as s USING(emp_no)
+JOIN dept_emp AS de USING(emp_no)
+WHERE de.dept_no = 'd005'
+GROUP BY e.emp_no
+HAVING count(s.from_date) > 15
+ORDER BY e.emp_no;
+
+
+
+/*
+*  Show me all the employees that have worked for multiple departments
+*  Database: Employees
+*/
+
+SELECT e.emp_no, count(d.dept_no), d.dept_no
+FROM employees AS e
+JOIN dept_emp AS d USING (emp_no)
+GROUP BY e.emp_no, d.dept_no
+HAVING count(d.dept_no) > 1
+ORDER By e.emp_no
+
+---------------------------------------------
+--GROUPING SETS--
+
+SELECT EXTRACT (YEAR FROM orderdate) AS "year",
+    EXTRACT (MONTH FROM orderdate) AS "month",
+    EXTRACT (DAY FROM orderdate) AS "day",
+    SUM(ol.quantity)
+FROM orderlines AS ol 
+GROUP BY
+    ROLLUP (
+    EXTRACT (YEAR FROM orderdate),
+    EXTRACT (MONTH FROM orderdate) ,
+    EXTRACT (DAY FROM orderdate)
+    )
+
+ORDER BY EXTRACT (YEAR FROM orderdate),
+    EXTRACT (MONTH FROM orderdate) ,
+    EXTRACT (DAY FROM orderdate)
