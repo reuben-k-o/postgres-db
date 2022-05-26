@@ -205,3 +205,12 @@ GROUP BY
 ORDER BY EXTRACT (YEAR FROM orderdate),
     EXTRACT (MONTH FROM orderdate) ,
     EXTRACT (DAY FROM orderdate)
+
+-------------------------------------------------------
+--- WINDOW FUNCTIONS----
+
+SELECT emp_no, salary, COUNT( salary) OVER ( 
+    PARTITION BY emp_no -- count the occurence
+    ORDER BY emp_no -- cumulative 
+)
+FROM salaries
