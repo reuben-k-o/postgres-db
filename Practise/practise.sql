@@ -323,3 +323,31 @@ FROM products
 
 
 ----------------------------------------
+--VIEWS---
+
+/*
+*  Create a view "90-95" that:
+*  Shows me all the employees, hired between 1990 and 1995
+*  Database: Employees
+*/
+
+CREATE VIEW "90-95" AS 
+SELECT * 
+FROM employees 
+-- WHERE EXTRACT ( YEAR FROM hire_date) >= 1990 AND EXTRACT ( YEAR FROM hire_date) <= 1990
+WHERE EXTRACT ( YEAR FROM hire_date) BETWEEN 1990 AND 1995
+ORDER BY emp_no
+-- ...
+
+/*
+*  Create a view "bigbucks" that:
+*  Shows me all employees that have ever had a salary over 80000
+*  Database: Employees
+*/
+
+CREATE VIEW "bigbucks" AS 
+SELECT emp_no, CONCAT(first_name, last_name) AS "Full name" , s.salary
+FROM employees
+JOIN salaries as s USING (emp_no)
+WHERE s.salary > 80000
+ORDER BY emp_no
