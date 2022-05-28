@@ -351,3 +351,14 @@ FROM employees
 JOIN salaries as s USING (emp_no)
 WHERE s.salary > 80000
 ORDER BY emp_no
+
+
+---------------------------------------------
+--INDEX---
+
+SELECT name, district, countrycode FROM city
+WHERE countrycode IN ( 'TUN', 'BE', 'NL')
+
+---CREATE INDEX ---
+
+CREATE INDEX idx_countrycode ON city (countrycode)
