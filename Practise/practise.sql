@@ -368,3 +368,11 @@ CREATE INDEX idx_countrycode ON city USING hash (countrycode)
 
 SELECT name, district, countrycode FROM city
 WHERE countrycode = 'TUN' OR countrycode =  'BE' OR countrycode = 'NL'
+
+
+---------------------------------------
+--SUBQUERY----
+
+SELECT title, price, (SELECT AVG(price) FROM products) AS "Global Average"
+-- FROM products 
+FROM (SELECT * FROM products WHERE price > 22) AS "products sub" 
