@@ -362,3 +362,9 @@ WHERE countrycode IN ( 'TUN', 'BE', 'NL')
 ---CREATE INDEX ---
 
 CREATE INDEX idx_countrycode ON city (countrycode)
+
+-- HASH ALGORITHM----
+CREATE INDEX idx_countrycode ON city USING hash (countrycode)
+
+SELECT name, district, countrycode FROM city
+WHERE countrycode = 'TUN' OR countrycode =  'BE' OR countrycode = 'NL'
