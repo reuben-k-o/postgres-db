@@ -376,3 +376,24 @@ WHERE countrycode = 'TUN' OR countrycode =  'BE' OR countrycode = 'NL'
 SELECT title, price, (SELECT AVG(price) FROM products) AS "Global Average"
 -- FROM products 
 FROM (SELECT * FROM products WHERE price > 22) AS "products sub" 
+
+--------------------------------
+select emp_no, salary, from_date, 
+    (select title from titles as t 
+     where t.emp_no=s.emp_no and 
+    (t.from_date = s.from_date + interval '2 days' or t.from_date=s.from_date))
+from salaries as s
+order by emp_no;
+
+
+
+---------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------
+
+--CREATING A DB---
+/* CLI COMMANDS */
+psql -U postgres Employees
+
+/* show db  */ \dt
+---------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------
