@@ -399,5 +399,15 @@ psql -U postgres Employees
 
 CREATE SCHEMA trial
 /* show schemas */ - \dn 
+
+---IMPORTANCE OF SCHEMAS---
+/*  1. Allow many users to use one db without interefering with each other
+    2. Organize db into manageable groups
+    3. Third party apps can be put into separate schemas to not collide with names of other objects 
+*/
+
+--- ROLES ---
+CREATE ROLE readonly WITH LOGIN ENCRYPTED PASSWORD 'readonly'
+    
 ---------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------
