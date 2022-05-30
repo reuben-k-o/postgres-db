@@ -432,3 +432,10 @@ CREATE TABLE test_table(
     variable varchar(24),
     unlimitedspace text
 );
+
+--- INSERTING DATA ---
+INSERT INTO test_table VALUES (
+    'rue',
+    'rueben',
+    'Reuben is a cool guy to hang out with, I really enjoy having this guy around, he is so awesome!'
+);
