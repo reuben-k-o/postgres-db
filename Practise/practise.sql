@@ -451,3 +451,16 @@ CREATE TABLE test_numbers (
 
 INSERT INTO test_numbers VALUES (234.343, 45823.32342342, 243428993.343424893403439204394329)
 -------------------
+--- ARRAYS---
+
+CREATE TABLE test_arrays (
+    firstfield char(2) [],
+    second text [],
+    third float4 []
+);
+
+INSERT INTO test_arrays VALUES (
+    ARRAY ['nn', 'm', 'o', 'pq'],
+    ARRAY ['trial text', 'Is it really long?', 'Hope not!!!!!!!!!!!!'],
+    ARRAY [23232.23223223222, 3488989.343988, 243243.93, 234.23434839439439]
+);
