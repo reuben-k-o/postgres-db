@@ -415,6 +415,13 @@ GRANT SELECT ON salaries TO reuben;
 GRANT ALL ON ALL TABLES IN SCHEMA schemaname TO username
 GRANT ALL PRIVILEGES ON tablename TO username
 
+
+
+---- REVOKE ROLE ------
+REVOKE SELECT ON salaries FROM reuben;
+REVOKE ALL ON ALL TABLES IN SCHEMA schemaname FROM username;
+REVOKE ALL PRIVILEGES ON tablename FROM username;
+
     
 ---------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------
