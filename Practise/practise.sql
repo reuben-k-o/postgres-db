@@ -425,3 +425,10 @@ REVOKE ALL PRIVILEGES ON tablename FROM username;
     
 ---------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------
+
+---DATA TYPES---
+CREATE TABLE test_table(
+    fixed char(4),
+    variable varchar(24),
+    unlimitedspace text
+);
