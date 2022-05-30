@@ -408,6 +408,13 @@ CREATE SCHEMA trial
 
 --- ROLES ---
 CREATE ROLE readonly WITH LOGIN ENCRYPTED PASSWORD 'readonly'
+
+
+---GRANT ROLE--
+GRANT SELECT ON salaries TO reuben;
+GRANT ALL ON ALL TABLES IN SCHEMA schemaname TO username
+GRANT ALL PRIVILEGES ON tablename TO username
+
     
 ---------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------
