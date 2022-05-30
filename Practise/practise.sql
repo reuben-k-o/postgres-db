@@ -439,3 +439,15 @@ INSERT INTO test_table VALUES (
     'rueben',
     'Reuben is a cool guy to hang out with, I really enjoy having this guy around, he is so awesome!'
 );
+
+--------------------------------
+--FLOATING POINTS---
+
+CREATE TABLE test_numbers (
+    four float4,
+    eight float8,
+    big decimal
+) 
+
+INSERT INTO test_numbers VALUES (234.343, 45823.32342342, 243428993.343424893403439204394329)
+-------------------
