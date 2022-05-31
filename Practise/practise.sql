@@ -467,15 +467,26 @@ INSERT INTO test_arrays VALUES (
 
 
 --------------------------------------------------------------
--- TABLE CONSTRAINT--
+--  CONSTRAINT--
 CREATE TABLE category (
     cat_id SMALLINT PRIMARY KEY,
     col_type TEXT
 );
 
+--- COL CONSTRAINTS--
 CREATE TABLE col_constraints (
     cc_id SMALLINT PRIMARY KEY,
     something TEXT NOT NULL,
     email TEXT CHECK (email ~* '^[A-Za-z0-9._%-]'),
     cat_id SMALLINT REFERENCES category(cat_id)
 );
+
+----- TABLE CONSTRAINTS---
+CREATE TABLE table_constraints (
+    cc_id SMALLINT,
+    something TEXT NOT NULL,
+    email TEXT,
+    cat_id SMALLINT REFERENCES category(cat_id),
+    CONSTRAINT pk_table_constraints PRIMARY KEY (cc_id)
+);
+
