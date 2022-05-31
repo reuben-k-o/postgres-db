@@ -464,3 +464,18 @@ INSERT INTO test_arrays VALUES (
     ARRAY ['trial text', 'Is it really long?', 'Hope not!!!!!!!!!!!!'],
     ARRAY [23232.23223223222, 3488989.343988, 243243.93, 234.23434839439439]
 );
+
+
+--------------------------------------------------------------
+-- TABLE CONSTRAINT--
+CREATE TABLE category (
+    cat_id SMALLINT PRIMARY KEY,
+    col_type TEXT
+);
+
+CREATE TABLE col_constraints (
+    cc_id SMALLINT PRIMARY KEY,
+    something TEXT NOT NULL,
+    email TEXT CHECK (email ~* '^[A-Za-z0-9._%-]'),
+    cat_id SMALLINT REFERENCES category(cat_id)
+);
