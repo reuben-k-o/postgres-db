@@ -495,6 +495,6 @@ CREATE TABLE table_constraints (
 ALTER TABLE student DROP COLUMN student_id;
 
 ---Add column---
-ALTER TABLE student ADD  student_id UUID PRIMARY KEY DEFAULT uuid_generate_v4();
+ALTER TABLE student ADD COLUMN student_id UUID PRIMARY KEY DEFAULT uuid_generate_v4();
 
 
