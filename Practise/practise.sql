@@ -512,3 +512,11 @@ CREATE TABLE enrollment (
 
 INSERT INTO student (first_name, last_name, email, date_of_birth) 
 VALUES ('Reuben', 'Khaemba', 'rubenkhaemba@gmail.com', '1999-05-16'::DATE);
+
+
+--------------------------------------------------
+----UPDATE ---
+
+UPDATE course
+SET subject_id = '1521fd93-e40c-4cbc-b9b0-a5753dc37718'
+WHERE subject_id IS NULL;
