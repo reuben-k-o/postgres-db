@@ -506,3 +506,9 @@ CREATE TABLE enrollment (
     enrollment_date DATE NOT NULL,
     CONSTRAINT pk_enrollment PRIMARY KEY (course_id, student_id)
 );
+
+--------------------------------------------------
+---INSERTING DATA----
+
+INSERT INTO student (first_name, last_name, email, date_of_birth) 
+VALUES ('Reuben', 'Khaemba', 'rubenkhaemba@gmail.com', '1999-05-16'::DATE);
