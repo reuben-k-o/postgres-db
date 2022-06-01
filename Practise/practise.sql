@@ -548,3 +548,15 @@ SET feedback = array_append(
     ROW('a429a787-a567-47a7-9c31-4f7c8e138a84', 8, 'Great course, loved every bit of it!!!')::feedback
 )
 WHERE course_id = 'fc9363b5-d56c-48d0-b9a5-8e96c4b89aab';
+
+
+----------
+CREATE TABLE feedback (
+    student_id UUID NOT NULL REFERENCES student (student_id),
+    course_id UUID NOT NULL REFERENCES course (course_id), 
+    feedback TEXT,
+    rating rating,
+    CONSTRAINT pk_feedback PRIMARY KEY (student_id, course_id)
+);
+
+
