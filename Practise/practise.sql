@@ -498,3 +498,11 @@ ALTER TABLE student DROP COLUMN student_id;
 ALTER TABLE student ADD COLUMN student_id UUID PRIMARY KEY DEFAULT uuid_generate_v4();
 
 
+------------------------
+
+CREATE TABLE enrollment (
+    course_id UUID REFERENCES course (course_id),
+    student_id UUID REFERENCES student (student_id),
+    enrollment_date DATE NOT NULL,
+    CONSTRAINT pk_enrollment PRIMARY KEY (course_id, student_id)
+);
