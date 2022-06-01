@@ -520,3 +520,31 @@ VALUES ('Reuben', 'Khaemba', 'rubenkhaemba@gmail.com', '1999-05-16'::DATE);
 UPDATE course
 SET subject_id = '1521fd93-e40c-4cbc-b9b0-a5753dc37718'
 WHERE subject_id IS NULL;
+
+-------------
+--ALTER--
+
+ALTER TABLE course ALTER COLUMN subject_id SET NOT NULL;
+
+-------------------------------------------------
+UPDATE course
+SET teacher_id = '98db8f72-cbf4-4bed-bc8d-d4810695433a'
+WHERE teacher_id IS NULL
+
+ALTER TABLE course ALTER COLUMN teacher_id SET NOT NULL;
+
+
+---------------------------------------------------------------
+
+INSERT INTO enrollment (course_id, student_id, enrollment_date) 
+VALUES ('fc9363b5-d56c-48d0-b9a5-8e96c4b89aab', 'a429a787-a567-47a7-9c31-4f7c8e138a84', NOW()::DATE);
+
+
+--------------------------------------------------------------
+----UPDATING FEEDBACK-----
+UPDATE course
+SET feedback = array_append(
+    feedback,
+    ROW('a429a787-a567-47a7-9c31-4f7c8e138a84', 8, 'Great course, loved every bit of it!!!')::feedback
+)
+WHERE course_id = 'fc9363b5-d56c-48d0-b9a5-8e96c4b89aab';
