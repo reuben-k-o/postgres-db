@@ -559,4 +559,27 @@ CREATE TABLE feedback (
     CONSTRAINT pk_feedback PRIMARY KEY (student_id, course_id)
 );
 
+INSERT INTO feedback (
+    student_id,
+    course_id,
+    feedback,
+    rating
+)
+VALUES(
+    'a429a787-a567-47a7-9c31-4f7c8e138a84',
+    'fc9363b5-d56c-48d0-b9a5-8e96c4b89aab',
+    'Wonderful experience!!',
+    9
+);
 
+-------------------------------------------------------------------
+-------------------------------------------------------------------
+
+-----SOLVING THE MYSTERY----
+
+CREATE VIEW suspected_rides AS
+SELECT * FROM vehicle_location_histories AS vlh 
+WHERE city = "new york" AND 
+lat BETWEEN -74.997 AND -74.9968 AND 
+long BETWEEN 40.5 AND 40.6
+vlh.timestamp::DATE = '2020-06-23'::DATE;
